@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="javascript.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Rock Paper Scissors Game</h1>
-    <p>Best out of 5 wins!</p>
-    <ul>
-        <li><button id="rock">Rock</button></li>
-        <li><button id="paper">Paper</button></li>
-        <li><button id="scissors">Scissors</button></li>
-    </ul>
-    <div>
-        <p>Your choice: <span id="humanChoiceMessage"></span></p>
-        <p>Computer choice: <span id="computerChoiceMessage"></span></p>
+    <p id="subheader">Best out of 5 wins!</p>
+    <div id="buttons">
+        <button id="rock">Rock</button></li>
+        <button id="paper">Paper</button></li>
+        <button id="scissors">Scissors</button></li>
+    </div>
+    <div id="content">
+        <div id="choices">
+            <div id="yourChoice">
+                <p>Your choice:</p>
+                <p id="humanChoiceMessage">Waiting</p>
+            </div>
+            <div id="computerChoice">
+                <p>Computer choice:</p>
+                <p id="computerChoiceMessage">Waiting</p>
+            </div>
+        </div>
         <p id="message"></p>
-        <p>Current Scores:</p>
-        <ul>
-            <li>Your score: <span id="humanScoreCount"></span></li>
-            <li>Computer score: <span id="computerScoreCount"></span></li>
-        </ul>
+        <div id="scores">
+            <p>Current Scores:</p>
+            <p>Your score: <span id="humanScoreCount"></span></p>
+            <p>Computer score: <span id="computerScoreCount"></span></p>
+        </div>
     </div>
 </body>
 </html>
