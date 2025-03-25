@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="javascript.js" defer></script>
 </head>
 <body>
-    <script src="javascript.js"></script>
-    <p style="font-size: 3px;">wassup :D</p>
+    <h1>Rock Paper Scissors Game</h1>
+    <p>Best out of 5 wins!</p>
+    <ul>
+        <li><button id="rock">Rock</button></li>
+        <li><button id="paper">Paper</button></li>
+        <li><button id="scissors">Scissors</button></li>
+    </ul>
+    <div>
+        <p>Your choice: <span id="humanChoiceMessage"></span></p>
+        <p>Computer choice: <span id="computerChoiceMessage"></span></p>
+        <p id="message"></p>
+        <p>Current Scores:</p>
+        <ul>
+            <li>Your score: <span id="humanScoreCount"></span></li>
+            <li>Computer score: <span id="computerScoreCount"></span></li>
+        </ul>
+    </div>
 </body>
 </html>

@@ -1,63 +1,108 @@
+let humanScore = 0 , computerScore = 0;
 let humanChoice, computerChoice;
 
 function getComputerChoice() {
     computerChoice = parseInt((Math.random() * 100));
     if (computerChoice < 33) {
-        computerChoice = "rock";
+        computerChoice = "Rock";
     } else if (computerChoice > 33 && computerChoice < 66) {
-        computerChoice = "paper";
+        computerChoice = "Paper";
     } else if (computerChoice > 66) {
-        computerChoice = "scissors";
+        computerChoice = "Scissors";
     } else {
-        alert("You made an invalid move. Try again."); // will never happen
+        alert("You made an invalid move. Try again."); // should never happen
     }
     return computerChoice;
 }
 
-function getHumanChoice() {
-    humanChoice = prompt("Rock, Paper, Scissors?");
-    return humanChoice.toLowerCase();
-}
-
-let humanScore = 0 , computerScore = 0;
+const message = document.querySelector("#message");
+const computerChoiceMessage = document.querySelector("#computerChoiceMessage");
+const humanChoiceMessage = document.querySelector("#humanChoiceMessage");
 
 function playRound(human, computer) {
-    if (humanScore < 5 && humanScore >= 0 && computerScore < 5 && computerScore >= 0) {
-        humanChoice = undefined;
-        getHumanChoice();
-        getComputerChoice();
-        if (humanChoice === computerChoice) {
-            alert("Draw!");
-            playRound(humanChoice, computerChoice);
-        } else if (humanChoice === "rock") {
-            let message = (computerChoice === "paper") ? "You lose!" : "You win!";
-            message === "You lose!" ? computerScore++ : humanScore++;
-            alert(message + `\nCurrent Scores\nYou:Computer\n${humanScore}:${computerScore}`);
-            playRound(humanChoice, computerChoice);
-        } else if (humanChoice === "paper") {
-            let message = (computerChoice === "scissors") ? "You lose!" : "You win!";
-            message === "You lose!" ? computerScore++ : humanScore++;
-            alert(message + `\nCurrent Scores\nYou:Computer\n${humanScore}:${computerScore}`);
-            playRound(humanChoice, computerChoice);
-        } else if (humanChoice === "scissors") {
-            let message = (computerChoice === "rock") ? "You lose!" : "You win!";
-            message === "You lose!" ? computerScore++ : humanScore++;
-            alert(message + `\nCurrent Scores\nYou:Computer\n${humanScore}:${computerScore}`);
-            playRound(humanChoice, computerChoice);
+    humanChoiceMessage.textContent = human;
+    computerChoiceMessage.textContent = computer;
+    if (human === computer) {
+        message.textContent = "Draw!"
+    } else if (human === "Rock") {
+        if (computer === "Paper") {
+            lose();
+            message.textContent = "Paper beats Rock. You lose!";
         } else {
-            alert("Invalid move, or you're not even entering a move. Get yo shit together foo!")
-            playRound(humanChoice,computerChoice)
+            win();
+            message.textContent = "Rock beats Scissors. You win!";
         }
-    } else if (humanScore === 5) {
-        alert("Congratulations, you won!");
-    } else {
-        alert("Boo, you lost!");
+    } else if (human === "Paper") {
+        if (computer === "Scissors") {
+            lose();
+            message.textContent = "Scissors beats Paper. You lose!";
+        } else {
+            win()
+            message.textContent = "Paper beats Rock. You win!";
+        }
+    } else if (human === "Scissors") {
+        if (computer === "Rock") {
+            lose();
+            message.textContent = "Rock beats Scissors. You lose!";
+        } else {
+            win()
+            message.textContent = "Scissors beats Paper. You win!";
+        }
+    }
+
+    if (humanScore === 5) {
+        message.textContent = "You won!";
+    } else if (computerScore === 5) {
+        message.textContent = "Boo, you lost!";
     }
 }
 
-function playGame() {
-    alert("Rock, Paper, Scissors game! Best out of 5 wins. Good luck!");
-    playRound(humanChoice, computerChoice);
+const humanScoreCount = document.querySelector("#humanScoreCount");
+const computerScoreCount = document.querySelector("#computerScoreCount");
+
+humanScoreCount.textContent = humanScore;
+computerScoreCount.textContent = computerScore;
+
+function win() {
+    humanScore++
+    humanScoreCount.textContent = humanScore;
 }
 
-playGame();
+function lose() {
+    computerScore++
+    computerScoreCount.textContent = computerScore;
+}
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => {
+    if (humanScore < 5 && computerScore < 5) {
+        playRound("Rock", getComputerChoice())
+    } else if (humanScore === 5) {
+        message.textContent = "You already won!";
+    } else if (computerScore === 5) {
+        message.textContent = "You already lost.";
+    }
+});
+
+paper.addEventListener("click", () => {
+    if (humanScore < 5 && computerScore < 5) {
+        playRound("Paper", getComputerChoice())
+    } else if (humanScore === 5) {
+        message.textContent = "You already won!";
+    } else if (computerScore === 5) {
+        message.textContent = "You already lost.";
+    }
+});
+
+scissors.addEventListener("click", () => {
+    if (humanScore < 5 && computerScore < 5) {
+        playRound("Scissors", getComputerChoice())
+    } else if (humanScore === 5) {
+        message.textContent = "You already won!";
+    } else if (computerScore === 5) {
+        message.textContent = "You already lost.";
+    }
+});
